@@ -15,6 +15,9 @@
      - ii. If the country is ZA, then a province is required as well.
 - e. For each address in the attached file, determine if it is valid or not, and if not give an indication of what is invalid in a message format of your choice.
 
+## Swagger ui endpoint
+- http://localhost:9092/address-validator-webapp/swagger-ui/index.html
+
 ## Endpoints for answers printed on console
 - http://localhost:9092/address-validator-webapp/printAllAddresses.do
 - http://localhost:9092/address-validator-webapp/printPhysicalAddress.do

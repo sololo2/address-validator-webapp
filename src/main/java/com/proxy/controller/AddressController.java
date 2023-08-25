@@ -2,8 +2,11 @@ package com.proxy.controller;
 
 import com.proxy.bean.Address;
 import com.proxy.service.AddressService;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.proxy.util.AddressType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class AddressController {
@@ -14,33 +17,32 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @RequestMapping("/printAllAddresses.do")
-    public void prettyPrintAllAddresses() throws Exception {
-        Address[] allAddresses = addressService.loadAddresses();
-        addressService.prettyPrintAllAddresses(allAddresses);
+    @GetMapping("/printAllAddresses.do")
+    public String prettyPrintAllAddresses() throws Exception {
+        List<Address> allAddresses = addressService.loadAddresses();
+        return addressService.prettyPrintAllAddresses(allAddresses);
     }
 
-    @RequestMapping("/printPhysicalAddress.do")
-    public void printPhysicalAddress() throws Exception {
-        Address[] allAddresses = addressService.loadAddresses();
-        addressService.printPhysicalAddress(allAddresses);
+    @GetMapping("/printPhysicalAddress.do")
+    public String printPhysicalAddress() throws Exception {
+        List<Address> allAddresses = addressService.loadAddresses();
+        return addressService.prettyPrintAddressType(allAddresses, AddressType.PHYSICAL_ADDRESS);
     }
 
-    @RequestMapping("/printPostalAddress.do")
-    public void printPostalAddress() throws Exception {
-        Address[] allAddresses = addressService.loadAddresses();
-        addressService.printPostalAddress(allAddresses);
+    @GetMapping("/printPostalAddress.do")
+    public String printPostalAddress() throws Exception {
+        List<Address> allAddresses = addressService.loadAddresses();
+        return addressService.prettyPrintAddressType(allAddresses, AddressType.POSTAL_ADDRESS);
     }
-    @RequestMapping("/printBusinessAddress.do")
-    public void printBusinessAddress() throws Exception {
-        Address[] allAddresses = addressService.loadAddresses();
-        addressService.printBusinessAddress(allAddresses);
+    @GetMapping("/printBusinessAddress.do")
+    public String printBusinessAddress() throws Exception {
+        List<Address> allAddresses = addressService.loadAddresses();
+        return addressService.prettyPrintAddressType(allAddresses, AddressType.BUSINESS_ADDRESS);
     }
 
-    @RequestMapping("/printValidAddresses.do")
-    public void printValidAddresses() throws Exception {
-        Address[] allAddresses = addressService.loadAddresses();
-        addressService.printValidAddresses(allAddresses);
+    @GetMapping("/printValidAddresses.do")
+    public String printValidAddresses() throws Exception {
+        List<Address> allAddresses = addressService.loadAddresses();
+        return addressService.printValidAddresses(allAddresses);
     }
 }
-
